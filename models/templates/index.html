@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Insider Threat Detection</title>
+    <style>
+        body { font-family: Arial; background-color: #1e1e2f; color: #fff; display:flex; justify-content:center; align-items:center; height:100vh; }
+        .container { background:#2a2a40; padding:20px; border-radius:10px; width:400px; }
+        input, button { width:100%; padding:8px; margin:6px 0; border-radius:5px; border:none; }
+        button { background-color:#4a4aff; color:white; cursor:pointer; }
+        button:hover { background-color:#2e2eff; }
+        .result { margin-top:10px; font-weight:bold; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Insider Threat Detection</h2>
+    <form id="threatForm">
+        <input type="text" id="user" placeholder="User ID" required>
+        <input type="number" id="login_count" placeholder="Login Count" required>
+        <input type="number" id="failed_login" placeholder="Failed Login" required>
+        <input type="number" id="files_read" placeholder="Files Read" required>
+        <input type="number" id="bytes_read" placeholder="Bytes Read" required>
+        <input type="number" step="0.01" id="if_score" placeholder="IF Score" required>
+        <input type="number" step="0.01" id="ae_score" placeholder="AE Score" required>
+        <input type="number" id="rule_outside_hours" placeholder="Outside Hours (0/1)" required>
+        <input type="number" id="rule_mass_download" placeholder="Mass Download (0/1)" required>
+        <input type="number" step="0.01" id="rule_score" placeholder="Rule Score" required>
+        <button type="submit">Check Anomaly</button>
+    </form>
+    <div class="result" id="result"></div>
+</div>
+
+<script>
+const form = document.getElementById('threatForm');
+const resultDiv = document.getElementById('result');
+
+form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const data = {
+        user: document.getElementById('user').value,
+        login_count: parseInt(document.getElementById('login_count').value),
+        failed_login: parseInt(document.getElementById('failed_login').value),
+        files_read: parseInt(document.getElementById('files_read').value),
+        bytes_read: parseInt(document.getElementById('bytes_read').value),
+        if_score: parseFloat(document.getElementById('if_score').value),
+        ae_score: parseFloat(document.getElementById('ae_score').value),
+        rule_outside_hours: parseInt(document.getElementById('rule_outside_hours').value),
+        rule_mass_download: parseInt(document.getElementById('rule_mass_download').value),
+        rule_score: parseFloat(document.getElementById('rule_score').value)
+    };
+
+    try {
+        const response = await fetch('/predict', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(data)
+        });
+
+        const result = await response.json();
+        if(result.anomaly){
+            resultDiv.innerHTML = "⚠️ Anomaly Detected!";
+            resultDiv.style.color = "red";
+        } else {
+            resultDiv.innerHTML = "✅ Normal Behavior";
+            resultDiv.style.color = "green";
+        }
+    } catch (err) {
+        console.error(err);
+        resultDiv.innerHTML = "Error connecting to backend.";
+        resultDiv.style.color = "orange";
+    }
+});
+</script>
+
+</body>
+</html>
