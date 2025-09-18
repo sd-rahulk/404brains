@@ -1,0 +1,140 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Cybersecurity SOC Dashboard Design System
+Dark theme with neon accents for insider threat detection.
+All colors MUST be HSL.
+*/
+
+@layer base {
+  :root {
+    /* Dark base colors for SOC environment */
+    --background: 220 25% 6%;
+    --foreground: 210 20% 85%;
+
+    --card: 220 20% 8%;
+    --card-foreground: 210 20% 85%;
+
+    --popover: 220 20% 8%;
+    --popover-foreground: 210 20% 85%;
+
+    /* Cyber blue primary */
+    --primary: 195 100% 50%;
+    --primary-foreground: 220 25% 6%;
+
+    --secondary: 220 15% 12%;
+    --secondary-foreground: 210 20% 85%;
+
+    --muted: 220 15% 10%;
+    --muted-foreground: 210 10% 55%;
+
+    --accent: 220 15% 12%;
+    --accent-foreground: 210 20% 85%;
+
+    /* Alert colors */
+    --destructive: 0 85% 60%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 220 15% 15%;
+    --input: 220 15% 12%;
+    --ring: 195 100% 50%;
+
+    --radius: 0.75rem;
+
+    /* Custom cybersecurity theme colors */
+    --cyber-blue: 195 100% 50%;
+    --cyber-green: 120 100% 50%;
+    --warning: 45 100% 60%;
+    --critical: 0 85% 60%;
+    --info: 200 100% 70%;
+    
+    /* Glassmorphism and effects */
+    --glass-bg: 220 20% 8% / 0.7;
+    --glass-border: 220 15% 25% / 0.3;
+    --glow-cyber: 195 100% 50% / 0.3;
+    --glow-critical: 0 85% 60% / 0.3;
+    --glow-warning: 45 100% 60% / 0.3;
+    --glow-success: 120 100% 50% / 0.3;
+
+    /* Gradients */
+    --gradient-cyber: linear-gradient(135deg, hsl(195 100% 50%) 0%, hsl(200 100% 40%) 100%);
+    --gradient-alert: linear-gradient(135deg, hsl(0 85% 60%) 0%, hsl(15 90% 55%) 100%);
+    --gradient-warning: linear-gradient(135deg, hsl(45 100% 60%) 0%, hsl(35 95% 55%) 100%);
+    --gradient-success: linear-gradient(135deg, hsl(120 100% 50%) 0%, hsl(140 90% 45%) 100%);
+    
+    /* Shadows and glows */
+    --shadow-glow: 0 0 20px hsl(var(--glow-cyber));
+    --shadow-alert: 0 0 20px hsl(var(--glow-critical));
+    --shadow-warning: 0 0 20px hsl(var(--glow-warning));
+    --shadow-success: 0 0 20px hsl(var(--glow-success));
+    
+    /* Animations */
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-fast: all 0.15s ease-out;
+
+    --sidebar-background: 0 0% 98%;
+
+    --sidebar-foreground: 240 5.3% 26.1%;
+
+    --sidebar-primary: 240 5.9% 10%;
+
+    --sidebar-primary-foreground: 0 0% 98%;
+
+    --sidebar-accent: 240 4.8% 95.9%;
+
+    --sidebar-accent-foreground: 240 5.9% 10%;
+
+    --sidebar-border: 220 13% 91%;
+
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+
+  .dark {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+
+    --primary: 210 40% 98%;
+    --primary-foreground: 222.2 47.4% 11.2%;
+
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 212.7 26.8% 83.9%;
+    --sidebar-background: 240 5.9% 10%;
+    --sidebar-foreground: 240 4.8% 95.9%;
+    --sidebar-primary: 224.3 76.3% 48%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 3.7% 15.9%;
+    --sidebar-accent-foreground: 240 4.8% 95.9%;
+    --sidebar-border: 240 3.7% 15.9%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+}
